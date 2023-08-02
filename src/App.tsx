@@ -16,6 +16,18 @@ const GlobalStyles = createGlobalStyle`
   svg, img {
     display: block;
   }
+  
+  button {
+    display: block;
+    border: none;
+    background-color: transparent;
+    transition: background-color 200ms ease-in-out;
+
+    
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
 `;
 
 function App() {

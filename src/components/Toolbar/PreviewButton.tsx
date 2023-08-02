@@ -10,21 +10,21 @@ const PREVIEW_MODE_STYLES: Record<PreviewMode, RuleSet<object>> = {
   off: css`
     background-color: transparent;
 
-    &:hover {
+    &:not(:disabled):hover {
       background-color: rgba(255, 165, 0, 0.25);
     }
   `,
   "side-by-side": css`
     background-color: rgba(255, 165, 0, 0.5);
 
-    &:hover {
+    &:not(:disabled):hover {
       background-color: rgba(255, 165, 0, 0.6);
     }
   `,
   fullscreen: css`
     background-color: rgba(255, 165, 0, 0.75);
 
-    &:hover {
+    &:not(:disabled):hover {
       background-color: rgba(255, 165, 0, 0.85);
     }
   `,
@@ -36,14 +36,9 @@ const Button = styled.button<{ $previewMode: PreviewMode }>`
   width: 40px;
   height: 40px;
 
-  border: none;
   border-radius: 8px;
-  background-color: transparent;
-
-  cursor: pointer;
   font-size: 30px;
 
-  transition: background-color 200ms ease-in-out;
 
   ${({ $previewMode }) => PREVIEW_MODE_STYLES[$previewMode]}
 `;
