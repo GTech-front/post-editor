@@ -44,6 +44,14 @@ const DateWrapper = styled.p`
   font-size: 0.875rem;
 `;
 
+const formatDate = (date: Date | string): string => {
+  try {
+    return format(new Date(date), DATE_FORMAT);
+  } catch {
+    return "Niepoprawna data";
+  }
+};
+
 export function MetadataContent() {
   const { metadata } = useEditorContext();
 
@@ -55,9 +63,7 @@ export function MetadataContent() {
         <Avatar />
         <AuthorInfoWrapper>
           <Text>{metadata.author}</Text>
-          <DateWrapper>
-            {format(new Date(metadata.created_at), DATE_FORMAT)}
-          </DateWrapper>
+          <DateWrapper>{formatDate(metadata.created_at)}</DateWrapper>
         </AuthorInfoWrapper>
       </AuthorWrapper>
     </Wrapper>
