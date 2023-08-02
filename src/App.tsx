@@ -1,6 +1,7 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
-import { Editor } from "./components/Editor";
+
+import { Editor } from "components/Editor";
 import { EditorContextProvider } from "context";
 
 const GlobalStyles = createGlobalStyle`

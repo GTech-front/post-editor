@@ -1,6 +1,6 @@
-import { Preview } from "../Preview";
-import { TextArea } from "../TextArea";
-import { Toolbar } from "../Toolbar";
+import { Preview } from "components/Preview";
+import { TextArea } from "components/TextArea";
+import { Toolbar } from "components/Toolbar";
 
 import { Wrapper, EditorWrapper } from "./styles";
 

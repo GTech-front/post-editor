@@ -1,9 +1,10 @@
 import React from "react";
+import { Tooltip } from "react-tooltip";
 import { VscOpenPreview } from "react-icons/vsc";
+import styled, { css, RuleSet } from "styled-components";
+
 import { useEditorContext } from "context";
 import type { PreviewMode } from "context/types";
-import { Tooltip } from "react-tooltip";
-import styled, { css, RuleSet } from "styled-components";
 
 const PREVIEW_MODE_STYLES: Record<PreviewMode, RuleSet<object>> = {
   off: css`
