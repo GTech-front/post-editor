@@ -1,5 +1,6 @@
-import React, { useCallback, useContext, useState } from "react";
-import type { EditorContext, PreviewMode } from "./types";
+import React, { useCallback, useContext, useMemo, useState } from "react";
+import matter from "gray-matter";
+import type { EditorContext, Metadata, PreviewMode } from "./types";
 
 const INITIAL_VALUES: EditorContext = {
   value: `---
@@ -20,6 +21,18 @@ thumbnail: '/images/thumbnails/'
 
   previewMode: "side-by-side",
   togglePreviewMode: () => console.warn("INITIAL STATE"),
+
+  markdown: "# Start writing here",
+  metadata: {
+    slug: "",
+    title: "",
+    description: "",
+    avatar: "",
+    author: "",
+    created_at: "",
+    banner: "",
+    thumbnail: "",
+  },
 };
 
 const PREVIEW_MODES: PreviewMode[] = ["off", "side-by-side", "fullscreen"];
@@ -34,6 +47,23 @@ export function EditorContextProvider({ children }: React.PropsWithChildren) {
     INITIAL_VALUES.previewMode
   );
 
+  const { markdown, metadata } = useMemo(() => {
+    const { content, data } = matter(value);
+
+    const metadata: Metadata = {
+      slug: data?.slug ?? "",
+      title: data?.title ?? "",
+      description: data?.description ?? "",
+      avatar: data?.avatar ?? "",
+      author: data?.author ?? "",
+      created_at: data?.created_at ?? "",
+      banner: data?.banner ?? "",
+      thumbnail: data?.thumbnail ?? "",
+    };
+
+    return { markdown: content, metadata };
+  }, [value]);
+
   const togglePreviewMode = useCallback(() => {
     setPreviewMode((prevState) => {
       const prevStateIndex = PREVIEW_MODES.indexOf(prevState);
@@ -44,7 +74,14 @@ export function EditorContextProvider({ children }: React.PropsWithChildren) {
 
   return (
     <Context.Provider
-      value={{ value, setValue, previewMode, togglePreviewMode }}
+      value={{
+        value,
+        setValue,
+        previewMode,
+        togglePreviewMode,
+        metadata,
+        markdown,
+      }}
     >
       {children}
     </Context.Provider>

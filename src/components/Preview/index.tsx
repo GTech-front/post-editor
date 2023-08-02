@@ -27,12 +27,12 @@ const MarkdownWrapper = styled.section<{ $previewMode: PreviewMode }>`
 `;
 
 export function Preview() {
-  const { value, previewMode } = useEditorContext();
+  const { markdown, previewMode } = useEditorContext();
 
   return (
     <MarkdownWrapper
       $previewMode={previewMode}
-      dangerouslySetInnerHTML={{ __html: value }}
+      dangerouslySetInnerHTML={{ __html: markdown }}
     />
   );
 }
