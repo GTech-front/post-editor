@@ -21,8 +21,12 @@ const GlobalStyles = createGlobalStyle`
     display: block;
     border: none;
     background-color: transparent;
-    transition: background-color 200ms ease-in-out;
+    transition: background-color 200ms ease-in-out, opacity 200ms ease-in-out;
 
+    
+    &:disabled {
+      opacity: .5;
+    }
     
     &:not(:disabled) {
       cursor: pointer;

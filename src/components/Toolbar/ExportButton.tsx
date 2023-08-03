@@ -37,6 +37,7 @@ export function ExportButton() {
 
   const handleMDXExport = useCallback(() => {
     try {
+      setLoading(true);
       const fileName = `${metadata.slug}.mdx`;
       const file = getMdxFileOrBlob(value.split(""), fileName);
 
