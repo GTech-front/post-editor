@@ -1,5 +1,6 @@
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import matter from "gray-matter";
+import { useLocalStorage } from "hooks/useLocalStorage";
 import type { EditorContext, Metadata, PreviewMode } from "./types";
 
 const INITIAL_VALUES: EditorContext = {
@@ -41,8 +42,14 @@ const Context = React.createContext<EditorContext>(INITIAL_VALUES);
 export const useEditorContext = () => useContext(Context);
 
 export function EditorContextProvider({ children }: React.PropsWithChildren) {
-  const [value, setValue] = useState(INITIAL_VALUES.value);
-  const [previewMode, setPreviewMode] = useState<PreviewMode>(
+  const [value, setValue] = useLocalStorage(
+    "editor",
+    "value",
+    INITIAL_VALUES.value
+  );
+  const [previewMode, setPreviewMode] = useLocalStorage<PreviewMode>(
+    "editor",
+    "previewMode",
     INITIAL_VALUES.previewMode
   );
 
@@ -69,7 +76,7 @@ export function EditorContextProvider({ children }: React.PropsWithChildren) {
 
       return PREVIEW_MODES[(prevStateIndex + 1) % PREVIEW_MODES.length];
     });
-  }, []);
+  }, [setPreviewMode]);
 
   return (
     <Context.Provider
