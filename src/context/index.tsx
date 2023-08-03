@@ -4,15 +4,14 @@ import type { EditorContext, Metadata, PreviewMode } from "./types";
 
 const INITIAL_VALUES: EditorContext = {
   value: `---
-slug: ''
-title: ''
-description: ''
+slug: 'todo'
+title: 'TODO'
+description: 'TODO'
 avatar: '/images/avatars/'
-author: ''
-created_at: '2023-06-15 08:00:00'
-banner: ''
+author: 'TODO'
+created_at: ${Date.now()}
+banner: '/images/banners/'
 thumbnail: '/images/thumbnails/'
-
 ---
 
 # Start writing here
