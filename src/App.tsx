@@ -16,6 +16,37 @@ const GlobalStyles = createGlobalStyle`
   svg, img {
     display: block;
   }
+
+  a {
+    width: max-content;
+    position: relative;
+    color: #6f6f6f;
+    text-decoration: none;
+    transition: color 150ms ease-in-out;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      pointer-events: none;
+      background-color: #1ca8bb;
+      transform-origin: 100% 50%;
+      transform: scaleX(0);
+      transition: transform 200ms ease-in-out;
+    }
+
+    &:hover {
+      color: #0d0d0d;
+      
+      &::after {
+        transform-origin: 0 50%;
+        transform: scaleX(1);
+      }
+    }
+  }
   
   button {
     display: block;
