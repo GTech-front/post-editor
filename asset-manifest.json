@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/post-editor/static/js/main.d576e905.js",
+    "index.html": "/post-editor/index.html",
+    "main.d576e905.js.map": "/post-editor/static/js/main.d576e905.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.d576e905.js"
+  ]
+}
